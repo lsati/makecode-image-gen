@@ -197,6 +197,10 @@ function loadFile(file) {
       // Auto-select type based on image dimensions
       setType(img.naturalWidth > 64 || img.naturalHeight > 64 ? 'background' : 'sprite');
       refreshPreview();
+      gtag('event', 'image_upload', {
+        width:  img.naturalWidth,
+        height: img.naturalHeight,
+      });
     };
     img.onerror = () => showToast('Could not load image. Try a different file.');
     img.src = ev.target.result;
@@ -320,6 +324,11 @@ generateBtn.addEventListener('click', () => {
   copyBtn.textContent = 'Copy Code';
 
   renderUsedColors(usedIndices);
+  gtag('event', 'generate_code', {
+    sprite_type: currentType,
+    resolution:  `${w}x${h}`,
+    greyscale:   greyscaleCheck.checked,
+  });
 
   outputCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 });
@@ -331,6 +340,7 @@ copyBtn.addEventListener('click', () => {
     .then(() => {
       copyBtn.textContent = 'Copied!';
       setTimeout(() => { copyBtn.textContent = 'Copy Code'; }, 1500);
+      gtag('event', 'copy_code', { sprite_type: currentType });
     })
     .catch(() => showToast('Copy failed — select and copy manually.'));
 });

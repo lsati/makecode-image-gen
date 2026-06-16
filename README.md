@@ -1,88 +1,52 @@
 # MakeCode Image Generator
 
-Convert any image into a MakeCode Arcade sprite or background — runs entirely in the browser, no install needed.
+Convert any image into a MakeCode Arcade **sprite** or **background** with one click — runs entirely in the browser, no install needed.
 
-**Live site:** `https://<your-username>.github.io/<your-repo-name>/`
-
----
-
-## Deploying to GitHub Pages
-
-### Step 1 — Create a GitHub repository
-
-1. Go to [github.com](https://github.com) and sign in.
-2. Click **New repository**.
-3. Name it (e.g. `makecode-imagegen`).
-4. Set visibility to **Public** (required for free GitHub Pages).
-5. Click **Create repository**.
+**Live site:** https://lazertag.github.io/makecode-imagegen/
 
 ---
 
-### Step 2 — Push the project files
+## What it does
 
-In your terminal, inside the project folder:
+Paste or drag any image onto the page and the tool:
 
-```bash
-git init
-git add index.html style.css app.js README.md
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/<your-username>/<your-repo-name>.git
-git push -u origin main
-```
-
-Replace `<your-username>` and `<your-repo-name>` with your actual GitHub username and repository name.
+1. Downscales it to the resolution you choose
+2. Maps every pixel to the nearest colour in the MakeCode Arcade 16-colour palette
+3. Outputs ready-to-paste JavaScript you can drop straight into [MakeCode Arcade](https://arcade.makecode.com)
 
 ---
 
-### Step 3 — Enable GitHub Pages
+## How to use
 
-1. In your repository, go to **Settings** → **Pages** (left sidebar).
-2. Under **Source**, select:
-   - Branch: `main`
-   - Folder: `/ (root)`
-3. Click **Save**.
+### 1. Upload an image
 
-GitHub will show a banner:
-> *Your site is live at `https://<your-username>.github.io/<your-repo-name>/`*
+Drag and drop an image onto the upload zone, or click it to open the file picker. PNG, JPG, GIF, and WebP are all supported.
 
-It may take **1–2 minutes** for the site to go live the first time.
+The tool automatically selects **Background** for large images and **Sprite** for small ones.
 
----
+### 2. Choose type and resolution
 
-### Step 4 — Verify
+| Type | Default resolution | Generated code |
+|------|--------------------|----------------|
+| Sprite | 16 × 16 | `sprites.create(img\`...\`, SpriteKind.Player)` |
+| Background | 480 × 360 | `scene.setBackgroundImage(img\`...\`)` |
 
-Open the URL in your browser and run a quick end-to-end check:
+Pick a preset from the **Resolution** dropdown, or choose **Custom…** to enter your own width and height.
 
-- [ ] Upload a test image
-- [ ] Switch between Sprite and Background type
-- [ ] Change resolution and confirm the pixelated preview updates
-- [ ] Click **Generate Code** and verify the output
-- [ ] Click **Copy Code**, paste into [MakeCode Arcade](https://arcade.makecode.com) and confirm the sprite renders correctly
+Enable **Greyscale** to strip colour before conversion — useful for tiles and textures.
 
----
+### 3. Generate and copy
 
-## Updating the site
+Click **Generate Code**. The pixelated preview updates live as you change settings.
 
-Every push to `main` automatically redeploys. After making changes:
-
-```bash
-git add index.html style.css app.js
-git commit -m "Describe your change"
-git push
-```
-
-The live site updates within ~30 seconds.
+Once you're happy, click **Copy Code** and paste it into the MakeCode Arcade editor.
 
 ---
 
-## Project files
+## Colour palette
 
-| File | Purpose |
-|------|---------|
-| `index.html` | Page structure and layout |
-| `style.css` | All styles, dark/light theme |
-| `app.js` | Image processing and code generation |
-| `README.md` | This file |
+The tool maps pixels to the official MakeCode Arcade 16-colour palette. After generating, the **Colors used** section shows only the colours that appear in your specific image.
 
-No build step, no dependencies, no Node.js required.
+---
+
+## Made with ♥ for the MakeCode gaming community by LazerTag team
