@@ -513,6 +513,412 @@ select {
 
 .toast.toast-error { background: #b91c1c; }
 
+/* ── Site nav ────────────────────────────────────────────────────────────── */
+
+.site-nav {
+  display: flex;
+  gap: 0.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-link {
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.nav-link:hover {
+  background: var(--secondary);
+  color: var(--primary);
+}
+
+.nav-link.active {
+  background: var(--secondary);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* ── BPM control ─────────────────────────────────────────────────────────── */
+
+.bpm-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bpm-control input[type="range"] {
+  width: 110px;
+  height: 4px;
+  accent-color: var(--primary);
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.bpm-control input[type="number"] {
+  width: 58px;
+  text-align: center;
+  padding: 0 0.4rem;
+}
+
+/* ── Play / Stop button ──────────────────────────────────────────────────── */
+
+.btn-stop { background: #b91c1c; color: #fff; }
+.btn-stop:hover { background: #991b1b; }
+
+/* ── Step sequencer ──────────────────────────────────────────────────────── */
+
+.track-card {
+  padding: 1.25rem;
+}
+
+.track-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.track-identity {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.track-color-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.track-name {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  outline: none;
+  border-radius: 4px;
+  padding: 2px 5px;
+  cursor: text;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 160px;
+}
+
+.track-name:focus {
+  background: var(--secondary);
+  color: var(--primary);
+  text-transform: none;
+  cursor: text;
+}
+
+/* ── Collapse toggle ──────────────────────────────────────────────────────── */
+
+.btn-track-collapse {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  flex-shrink: 0;
+  border-radius: 4px;
+  transition: color 0.12s, background 0.12s;
+}
+
+.btn-track-collapse:hover {
+  color: var(--text);
+  background: var(--surface-alt);
+}
+
+.btn-track-collapse svg {
+  transition: transform 0.18s ease;
+}
+
+.track-card[data-collapsed="true"] .btn-track-collapse svg {
+  transform: rotate(-90deg);
+}
+
+/* ── Mini preview (shown when collapsed) ─────────────────────────────────── */
+
+.track-mini {
+  display: none;
+  height: 14px;
+  margin-top: 0.6rem;
+  gap: 2px;
+}
+
+.track-card[data-collapsed="true"] .track-mini {
+  display: flex;
+}
+
+.track-card[data-collapsed="true"] .sequencer-scroll {
+  display: none;
+}
+
+.track-mini-beat {
+  flex: 1;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--border);
+  min-width: 0;
+  transition: background 0.1s;
+}
+
+.track-mini-beat.active {
+  background: var(--track-color, var(--primary));
+}
+
+.track-mini-beat.bar-start {
+  margin-left: 2px;
+}
+
+.track-every {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  white-space: nowrap;
+}
+
+.track-every-label {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  user-select: none;
+}
+
+.track-every-input {
+  width: 62px;
+  height: 1.75rem;
+  text-align: center;
+  padding: 0 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: border-color 0.12s, color 0.12s;
+}
+
+.track-every-input:focus {
+  border-color: var(--primary);
+  color: var(--text);
+  outline: none;
+}
+
+.track-instrument {
+  height: 1.75rem;
+  padding: 0 0.45rem;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 500;
+  cursor: pointer;
+  min-width: 78px;
+  transition: border-color 0.12s, color 0.12s;
+}
+
+.track-instrument:hover,
+.track-instrument:focus {
+  border-color: var(--primary);
+  color: var(--text);
+  outline: none;
+}
+
+.track-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.btn-track-mute {
+  height: 1.75rem;
+  padding: 0 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+
+.btn-track-mute:hover {
+  background: var(--secondary);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-track-mute.active {
+  background: var(--secondary);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-track-remove {
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+
+.btn-track-remove:hover {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-color: #f87171;
+}
+
+[data-theme="dark"] .btn-track-remove:hover {
+  background: #450a0a;
+  color: #fca5a5;
+  border-color: #7f1d1d;
+}
+
+.track-card.muted .sequencer-scroll {
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.sequencer-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 4px; /* room for scrollbar on some OSes */
+}
+
+.sequencer-grid {
+  display: grid;
+  grid-template-columns: 44px repeat(var(--beats, 16), minmax(28px, 1fr));
+  gap: 2px;
+  width: 100%;
+}
+
+.seq-corner {
+  height: 22px;
+}
+
+.beat-num {
+  height: 22px;
+  font-size: 0.62rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 22px;
+  user-select: none;
+}
+
+.beat-num.bar-start {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.note-label {
+  height: 26px;
+  font-size: 0.68rem;
+  font-family: 'Cascadia Code', 'Fira Code', monospace;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.note-label.black-key {
+  color: var(--text-muted);
+  font-size: 0.63rem;
+}
+
+.seq-cell {
+  height: 26px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--surface-alt);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.08s, border-color 0.08s;
+}
+
+.seq-cell.bar-start {
+  border-left: 2px solid var(--border);
+}
+
+.seq-cell:hover {
+  border-color: var(--primary);
+  background: var(--secondary);
+}
+
+.seq-cell:active {
+  transform: scale(0.88);
+}
+
+.seq-cell.active {
+  background: var(--track-color, #4ecdc4);
+  border-color: transparent;
+}
+
+.seq-cell.active.bar-start {
+  border-left-color: transparent;
+}
+
+.seq-cell.active:hover {
+  filter: brightness(1.12);
+}
+
+/* ── Music hint ──────────────────────────────────────────────────────────── */
+
+.music-hint {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  padding: 0.25rem 0 0.5rem;
+}
+
+/* ── Beat cursor (playback position) ────────────────────────────────────── */
+
+.beat-num.cursor {
+  color: var(--primary);
+  font-weight: 800;
+}
+
+.seq-cell.cursor:not(.active) {
+  background: var(--secondary);
+  border-color: var(--primary);
+}
+
+.seq-cell.cursor.active {
+  filter: brightness(1.2);
+}
+
 /* ── Responsive ──────────────────────────────────────────────────────────── */
 
 @media (max-width: 660px) {
@@ -543,4 +949,8 @@ select {
   .btn { width: 100%; }
 
   .custom-size-inputs input[type="number"] { flex: 1; }
+
+  /* Music page mobile */
+  .bpm-control input[type="range"] { flex: 1; }
+  .track-name { max-width: 100px; }
 }

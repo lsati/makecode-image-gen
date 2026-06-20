@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MakeCode Music Looper</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Apply saved theme before paint to avoid flash -->
+  <script>
+    (function () {
+      var t = localStorage.getItem('mc-theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6S20JRHYVD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6S20JRHYVD');
+  </script>
+</head>
+<body>
+  <div class="container">
+
+    <nav class="site-nav">
+      <a href="index.html" class="nav-link">Image Generator</a>
+      <a href="music.html" class="nav-link active">Music Looper</a>
+    </nav>
+
+    <header>
+      <div class="header-inner">
+        <div>
+          <h1>MakeCode Music Looper</h1>
+          <p class="subtitle">Compose a loop and generate MakeCode Arcade music code</p>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Loop controls -->
+      <section class="card controls-card">
+        <div class="controls-row">
+          <div class="control-group">
+            <label>Loop length (beats)</label>
+            <div class="type-toggle" id="loop-length-toggle">
+              <button class="type-btn" data-beats="8">8</button>
+              <button class="type-btn active" data-beats="16">16</button>
+              <button class="type-btn" data-beats="32">32</button>
+            </div>
+          </div>
+          <div class="control-group">
+            <label for="bpm-input">BPM</label>
+            <div class="bpm-control">
+              <input type="range" id="bpm-range" min="60" max="240" value="240" step="1">
+              <input type="number" id="bpm-input" min="60" max="240" value="240">
+            </div>
+          </div>
+          <button class="btn btn-secondary" id="add-track-btn">+ Add Track</button>
+          <button class="btn btn-secondary" id="clear-all-btn">Clear All</button>
+          <button class="btn btn-primary" id="play-btn">&#9654; Play</button>
+          <button class="btn btn-primary" id="generate-btn">Generate Code</button>
+        </div>
+      </section>
+
+      <!-- Hint shown until the user adds their first note -->
+      <p class="music-hint" id="music-hint">Click any cell in the grid below to start composing</p>
+
+      <!-- Track grids rendered by JS -->
+      <div id="tracks-container"></div>
+
+      <!-- Generated code output -->
+      <section class="card output-card" id="output-card" hidden>
+        <div class="output-header">
+          <h2>Generated Code</h2>
+          <button class="btn btn-secondary" id="copy-btn">Copy Code</button>
+        </div>
+        <pre class="code-block"><code id="music-output"></code></pre>
+      </section>
+    </main>
+
+    <footer class="credits">
+      Made with ♥ for the MakeCode gaming community &nbsp;·&nbsp; by <strong>LazerTag team</strong>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
+
+  <script src="music.js"></script>
+</body>
+</html>
